@@ -77,6 +77,10 @@ class Memcache
             throw new BackendException("No data.");
         }
         $this->beforeAdd();
+        if (is_array($expiry)) {
+            // FIXME: Silently swallow incompatible $properties argument.
+            $expiry = null;
+        }
         if (empty($expiry)) {
             $expiry = $this->expiry;
         }
